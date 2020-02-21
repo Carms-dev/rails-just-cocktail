@@ -1,0 +1,44 @@
+<div class="banner">
+  <div class="container banner-text">
+    <h1>Just Cocktail</h1>
+    <p >Fun. Yum. Drun.k.</p>
+    <!-- <a class="btn btn-outline-success" href="cocktails#all-cards">Explore Our Menu</a> -->
+    <form action="cocktails#index" method="get" class="form-group w-50 mt-4">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Mojito" name="search">
+        <div class="input-group-append">
+          <input type="submit" value="search" class="btn btn-success">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container mt-4" id="all-cards">
+  <h2 class="text-center m-4">~ What's on the menu? ~</h2>
+  <div class="row d-flex justify-content-around">
+    <% @cocktails.each do |cocktail|%>
+      <div class="card m-4" style="width: 20rem;">
+        <%= link_to cocktail_path(cocktail) do %>
+        <img style="height: 190px;" class="card-img-top" src="<%= cocktail.url %>" alt="drinks image">
+        <% end %>
+        <div class="card-body d-flex justify-content-between">
+          <h5 class="card-title"><%= cocktail.name %></h5>
+          <div>
+            <%= link_to cocktail_path(cocktail) do %>
+              <i class="fas fa-info-circle"></i>
+            <% end %>
+            <%= link_to edit_cocktail_path(cocktail) do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= link_to cocktail_path(cocktail), method: :delete, data: { confirm: 'Are you sure?'} do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+

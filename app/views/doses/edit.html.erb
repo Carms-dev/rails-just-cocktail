@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="card p-4 mt-4">
+    <h1 class="card-title">Edit @dose.ingredient.name for @dose.cocktail.name</h1>
+    <%= simple_form_for(@dose) do |f| %>
+      <%= f.input :description %>
+      <%= f.association :ingredient %>
+      <%= f.submit class: 'btn btn-outline-primary' %>
+    <% end %>
+  </div>
+</div>
+
