@@ -7,6 +7,7 @@ class CocktailsController < ApplicationController
     else
       search
     end
+    @random_cocktail = Cocktail.all.sample
   end
 
   def search
@@ -48,7 +49,6 @@ class CocktailsController < ApplicationController
 
     redirect_to cocktails_path
   end
-
 
   private
 
