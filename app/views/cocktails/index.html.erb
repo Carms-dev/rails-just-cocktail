@@ -1,13 +1,15 @@
 <div class="banner">
   <div class="container banner-text">
     <h1>Cocktail Time</h1>
-    <p >Fun. Yum. Drun.k.</p>
+    <p>
+      <span id="banner-typed-text"></span>
+    </p>
     <!-- <a class="btn btn-outline-success" href="cocktails#all-cards">Explore Our Menu</a> -->
     <form action="cocktails#index" method="get" class="form-group w-50 mt-4">
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Mojito" name="search">
         <div class="input-group-append">
-          <input type="submit" value="search" class="btn btn-success">
+          <input type="submit" value="search" class="btn btn-success zero-z-index">
         </div>
       </div>
     </form>
@@ -52,5 +54,21 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Modal Section -->
+<div class="bg-modal">
+  <div class="modal-content">
+    <div class="closed">+</div>
+    <h3>Add Cocktail</h3>
+    <!-- <img width="80px" src="https://cdn2.iconfinder.com/data/icons/flat-artistic-vacation-1/32/cocktail-add-512.png" alt="add cocktail"> -->
+    <%= simple_form_for(Cocktail.new) do |f|%>
+      <%= f.input :name, placeholder: 'Enter Cocktail Name', label: false %>
+      <%= f.input :url, placeholder: 'Enter Image URL', label: false %>
+      <%= f.submit class: 'btn btn-outline-success'%>
+    <% end %>
+
+
   </div>
 </div>

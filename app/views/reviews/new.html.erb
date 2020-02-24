@@ -1,13 +1,13 @@
 <div class="container">
   <div class="card mt-4 p-4">
     <h1 class="card-title">New review for <%= @cocktail.name %></h1>
-  <%= simple_form_for [@cocktail, @review] do |f|%>
-    <%= f.input :username %>
-    <%= f.input :content %>
-    <%= f.input :rating %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit class: 'btn btn-outline-success'%>
-  <% end %>
+    <%= simple_form_for [@cocktail, @review] do |f|%>
+      <%= f.input :username %>
+      <%= f.input :content %>
+      <%= f.input :rating %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      <%= f.submit class: 'btn btn-outline-success'%>
+    <% end %>
   </div>
 </div>
 

@@ -8,6 +8,7 @@
   <div class="d-flex justify-content-between ">
     <h1><%= @cocktail.name %></h1>
     <div>
+      <!-- <a href="#" id="btn-modal" class="btn btn-success m-2"><i class="fas fa-plus"></i> Review</a> -->
       <%= link_to new_cocktail_review_path(@cocktail), class: 'btn btn-success m-2' do %>
         <i class="fas fa-plus"></i> Review
       <% end %>
@@ -70,11 +71,18 @@
       <p>No reviews yet</p>
     <% else %>
 
+
+
       <div class="row d-flex justify-content-around my-4">
+
+
+
         <% @cocktail.reviews.each do |review| %>
-          <div class="card" style="width: 18rem;">
+          <div class="card m-4" style="width: 20rem;">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
+
+
                 <div class="carousel-item active">
                   <% if review.photos.empty? %>
                     <img src="https://cdn1.iconfinder.com/data/icons/summer-96/64/cocktail-glass-drink-beverage-party-thirst-summer-512.png" class="d-block w-100" alt="...">
@@ -100,11 +108,26 @@
             </div>
           </div>
         <% end %>
-      </div>
 
+      </div>
     <% end %>
 
   </div>
 </div>
 
+
+<!-- Modal Section -->
+<div class="bg-modal">
+  <div class="modal-content">
+    <div class="closed">+</div>
+    <h3>New review for <%= @cocktail.name %></h3>
+    <%= simple_form_for [@cocktail, Review.new] do |f|%>
+      <%= f.input :username, label: false, placeholder: 'Your name' %>
+      <%= f.input :content, label: false, placeholder: 'Your thoughts?'%>
+      <%= f.input :rating, label: false, placeholder: 'Rating 1: Never again to 5: Excellent!' %>
+      <%= f.input :photos, as: :file, label: false, input_html: { multiple: true } %>
+      <%= f.submit class: 'btn btn-outline-success'%>
+    <% end %>
+  </div>
+</div>
 
