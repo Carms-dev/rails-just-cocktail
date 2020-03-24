@@ -2,17 +2,18 @@ class CocktailsController < ApplicationController
   before_action :find_cocktail, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search].nil?
-      @cocktails = Cocktail.all
+    if params[:search].present?
+      @search = params[:search]
+      # sql_query = "
+      #   cocktails.name @@ :query \
+      #   OR ingredients.name @@ :query \
+      # "
+      # @cocktails = Cocktail.joins(:doses, :ingredients).where(sql_query, query: "%#{params[:search]}%")
+      @cocktails = Cocktail.where("lower(#{:name}) LIKE ?", "%#{@search.downcase}%")
     else
-      search
+      @cocktails = Cocktail.all
     end
     @random_cocktail = Cocktail.all.sample
-  end
-
-  def search
-    @search = params[:search]
-    @cocktails = Cocktail.where("lower(#{:name}) LIKE ?", "%#{@search.downcase}%")
   end
 
   def show
@@ -31,9 +32,6 @@ class CocktailsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
   end
 
   def update
